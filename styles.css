@@ -1,0 +1,80 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  margin: 0;
+  padding: 0;
+  background-color: #ff6f00;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px; 
+}
+
+.navbar .logo {
+  padding: 0 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.navbar .menu-icon {
+  padding: 0 20px;
+  font-size: 1.5rem;
+  color: white;
+}
+
+/* .search-container */
+.container {
+  background:url("./assets/banner.jpeg");
+  border-radius: 12px;
+  padding: 20px;
+  height: 300px;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  margin-left: 400px;
+}
+
+.search-bar {
+  position: relative;
+  margin: 20px 0;
+}
+
+.search-bar input {
+  width: 30%;
+  padding: 15px 40px 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+  align-items: center;
+  margin-left: 400px;
+  margin-top: 80px;
+}
+
+.search-bar button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  color: black;
+  font-size: 18px;
+  padding: 8px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: 40px;
+}
+
+.personalize {
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 20px;
+  margin-left: 400px;
+}
+
