@@ -26,8 +26,8 @@ body {
   font-size: 1.5rem;
   color: white;
 }
+/* ////////////////////search_container//////////////////////////////// */
 
-/* .search-container */
 .container {
   background:url("./assets/banner.jpeg");
   border-radius: 12px;
@@ -78,3 +78,89 @@ h1 {
   margin-left: 400px;
 }
 
+/*///////////////////////////////// carts  /////////////////////////////////////////////*/
+
+.categories {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.category {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: left;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  position: relative;
+}
+
+.category:hover {
+  transform: scale(1.05);
+}
+
+.category img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.category h3 {
+  margin: 0;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 87, 34, 0.8);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+/* //////////////////menu_bar ////////////////////////////////////////////// */
+
+.menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 300px;
+  height: 100%;
+  background-color: #f4f4f4;
+  transition: right 0.3s ease-in-out;
+  padding: 20px;
+  cursor: pointer;
+
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 50px 0 0;
+  cursor: pointer;
+
+}
+
+.menu ul li {
+  margin: 10px 0;
+  font-size: 18px;
+  color: #333;
+  cursor: pointer;
+
+}
+.menu .menu1 {
+  font-size: 20px;
+  color: #FF6600;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.menu.active {
+right:0px;
+}
