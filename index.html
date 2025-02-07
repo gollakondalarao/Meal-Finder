@@ -8,52 +8,42 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-      <header class="navbar">
+    <header class="navbar">
         <div class="logo">
-           <span><i class="fa-solid fa-house-circle-exclamation"></i></i>MEAL FINDER</span>
+            <span><i class="fa-solid fa-house-circle-exclamation"></i> MEAL FINDER</span>
         </div>
-          <div class="menu-icon">
-            <i class="fa-solid fa-bars"></i>
-          </div>
-       </header>
 
-    <!-- banner  -->
-  <div class="container">
-    <div class="search-bar">
-        <input type="text" placeholder="Search recipes here ...">
-        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        <div class="menu">
+            <button id="btn" class="menu-btn">☰</button>
+            <ul id="menu-list" class="menu-list">
+                <li data-category="Beef">Beef</li>
+                <li data-category="Chicken">Chicken</li>
+                <li data-category="Dessert">Dessert</li>
+                <li data-category="Lamb">Lamb</li>
+                <li data-category="Miscellaneous">Miscellaneous</li>
+                <li data-category="Pasta">Pasta</li>
+                <li data-category="Pork">Pork</li>
+                <li data-category="Seafood">Seafood</li>
+                <li data-category="Side">Side</li>
+                <li data-category="starter">starter</li>
+                <li data-category="vegan">vegan</li>
+                <li data-category="vegetarian">vegetarian</li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search recipes here ...">
+            <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <h1>What are your favorite cuisines?</h1>
+        <h2 class="personalize">PERSONALIZE YOUR EXPERIENCE</h2>
     </div>
-    <h1>What are your favorite cuisines?</h1>
-    <h2 class="personalize">PERSONALIZE YOUR EXPERIENCE</h2>
-</div>
- 
+          <h1>categories</h1>
+    <div class="categories" id="categories"></div>
+    <div id="mealsContainer" class="meals-container"></div>
 
-<!-- carts  -->
-
-<div class="categories" id="categories">
-   
-</div>
-
-
-<!-- menu_bar  -->
-
-<div>
-  <div class="menu" id="menu">
-    <button class="menu1" onclick="toggleMenu()"></button>
-    <ul>
-        <li>Beef</li>
-        <li>Chicken</li>
-        <li>Dessert</li>
-        <li>Lamb</li>
-        <li>Miscellaneous</li>
-        <li>Pasta</li>
-        <li>Pork</li>
-        <li>Seafood</li>
-        <li>Side</li>
-    </ul>
-</div>
-</div>
-
- <script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
