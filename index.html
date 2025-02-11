@@ -25,9 +25,9 @@
                 <li data-category="Pork">Pork</li>
                 <li data-category="Seafood">Seafood</li>
                 <li data-category="Side">Side</li>
-                <li data-category="starter">starter</li>
-                <li data-category="vegan">vegan</li>
-                <li data-category="vegetarian">vegetarian</li>
+                <li data-category="Starter">Starter</li>
+                <li data-category="Vegan">Vegan</li>
+                <li data-category="Vegetarian">Vegetarian</li>
             </ul>
         </div>
     </header>
@@ -40,9 +40,21 @@
         <h1>What are your favorite cuisines?</h1>
         <h2 class="personalize">PERSONALIZE YOUR EXPERIENCE</h2>
     </div>
-          <h1>categories</h1>
-    <div class="categories" id="categories"></div>
-    <div id="mealsContainer" class="meals-container"></div>
+
+    <!-- Category Section -->
+    <section>
+        <h1>Categories</h1>
+        <div class="categories" id="categories"></div>
+    </section>
+
+    <!-- Category Description -->
+    <section id="categoryDescription" class="description-box" style="display: none;"></section>
+
+    <!-- Meals Section -->
+    <section>
+        <h1 id="mealTitle" style="display: none;">Meals</h1>
+        <div id="mealsContainer" class="meals-container"></div>
+    </section>
 
     <script src="app.js"></script>
 </body>
