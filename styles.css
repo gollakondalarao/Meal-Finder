@@ -161,5 +161,17 @@ body {
 }
 
 
-/* practices  /////////////////////////////////////////////*/
+/* .description */
 
+.categoryDescriptions{
+    width: 400px;
+    padding: 20px;
+    margin: 30px auto;
+    border: 3px solid #8B0000;
+    background-color: #FFE4C4;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    text-align: justify;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
