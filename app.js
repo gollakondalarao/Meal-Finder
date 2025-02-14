@@ -7,15 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 let categoryDescriptions = {};
 async function fetchCategories() {     
-    try {
+
         const response = await fetch('https://www.themealdb.com/api/json/v1/1/categories.php');     
         const data = await response.json();     
       
         
         displayCategories(data.categories);  
-    } catch (error) {
-        console.error("Error fetching categories:", error);
-    }
+    
 }
 
 function displayCategories(categories) {     
@@ -73,13 +71,11 @@ function setupMenu() {
 //////////////////////filter products////////////////////////////////////////
 
 async function fetchMealsByCategory(category) {     
-    try {
+    
         const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);     
         const data = await response.json();     
         displayMeals(data.meals, category);
-    } catch (error) {
-        console.error("Error fetching meals:", error);
-    }
+   
 }  
 
 function displayMeals(meals, category) {     
@@ -114,45 +110,41 @@ function displayMeals(meals, category) {
         ////////////////////// single product page ////////////////////////
 
         
-async function fetchMealDetails(mealId) {
-    try {
-        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`);
-        const data = await response.json();
-        displayMealDetails(data.meals[0]);
-
-    } catch (error) {
-        console.error("Error fetching meal details:", error);
+    async function fetchMealDetails(mealId) {
+      
+            const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`);
+            const data = await response.json();
+             const meal = data.meals[0];
+            const mealsContainer = document.getElementById('mealsContainer');
+            const mealDetailContainer = document.getElementById('mealDetail');
+            
+            mealsContainer.style.display = 'none';
+            mealDetailContainer.style.display = 'block';
+    
+            mealDetailContainer.innerHTML = `
+                <div class="meal-detail">
+                    <h1>${meal.strMeal}</h1>
+                    <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+                    <p><strong>Category:</strong> ${meal.strCategory}</p>
+                    <p><strong>Area:</strong> ${meal.strArea}</p>
+                    <p><strong>Instructions:</strong> ${meal.strInstructions}</p>
+                    <button id="backBtn">Back to Meals</button>
+                </div>
+            `;
+    
+            document.getElementById("backBtn").addEventListener("click", () => {
+                mealDetailContainer.style.display = 'none';
+                mealsContainer.style.display = 'grid';
+            });
+    
     }
-}
-
-function displayMealDetails(meal) {
-    const mealsContainer = document.getElementById('mealsContainer');
-    const mealDetailContainer = document.getElementById('mealDetail');
     
-    mealsContainer.style.display = 'none';
-    mealDetailContainer.style.display = 'block';
-    
-    mealDetailContainer.innerHTML = `
-        <div class="meal-detail">
-            <h1>${meal.strMeal}</h1>
-            <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
-            <p><strong>Category:</strong> ${meal.strCategory}</p>
-            <p><strong>Area:</strong> ${meal.strArea}</p>
-            <p><strong>Instructions:</strong> ${meal.strInstructions}</p>
-            <button id="backBtn">Back to Meals</button>
-        </div>
-    `
-    
-    document.getElementById("backBtn").addEventListener("click", () => {
-        mealDetailContainer.style.display = 'none';
-        mealsContainer.style.display = 'grid';
-    });
-}
-
-document.addEventListener("click", (event) => {
-    if (event.target.closest(".meal-card")) {
-        const mealId = event.target.closest(".meal-card").getAttribute("data-meal-id");
-        fetchMealDetails(mealId);
-    }
-});
+    document.addEventListener("click", (event) => {
+            const mealCard = event.target.closest(".meal-card");
+            if (mealCard) {
+                const mealId = mealCard.getAttribute("data-meal-id");
+                fetchMealDetails(mealId);
+            }
+        });
+        
       
