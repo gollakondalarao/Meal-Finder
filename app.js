@@ -111,67 +111,72 @@ function displayMeals(meals, category) {
        
     //////////////////////////// single product page ////////////////////////
 
-async function fetchMealDetails(mealId) {
-    const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`);
-    const data = await response.json();
-    const meal = data.meals[0];
-    const mealsContainer = document.getElementById('mealsContainer');
-    const mealDetailContainer = document.getElementById('mealDetail');
-
-    mealsContainer.style.display = 'none';
-    mealDetailContainer.style.display = 'block';
-
-    mealDetailContainer.innerHTML = `
-        <div class="meal-detail">
-            <h1>${meal.strMeal}</h1>
-            <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
-            <p><strong>Category:</strong> ${meal.strCategory}</p>
-            <p><strong>Area:</strong> ${meal.strArea}</p>
-            <p><strong>Instructions:</strong> ${meal.strInstructions}</p>
-            <p><strong>measure:</strong> ${meal.strmeasure}</p>
-            <button id="backBtn">Back to Meals</button>
-        </div>
-    `;
-
-    document.getElementById("backBtn").addEventListener("click", () => {
-        mealDetailContainer.style.display = 'none';
-        mealsContainer.style.display = 'grid';
-    });
-}
-
-/////////////////////////// Update displayMeals function /////////////////////////
-
-function displayMeals(meals, category) {     
-    const categoriesContainer = document.getElementById('categories');  
-    const mealsContainer = document.getElementById('mealsContainer');  
-    const mealTitle = document.getElementById('mealTitle');
-
-    categoriesContainer.style.display = 'none';     
-    mealsContainer.style.display = 'grid';      
-
-    mealsContainer.innerHTML = meals.map(meal => ` 
-        <div class="meal-card" data-meal-id="${meal.idMeal}">     
-            <img src="${meal.strMealThumb}" alt="${meal.strMeal}" class="meal-image">             
-            <h3>${meal.strMeal}</h3>     
-        </div>     
-    `).join('');
-
-    if (mealsContainer) {
-        const description = categoryDescriptions[category] || "No description available."; 
-        mealTitle.innerHTML = `
-        <h1>${category}</h1> 
-        <p>${description}</p>`; 
-        mealTitle.style.display = 'block';
+    async function fetchMealDetails(mealId) {
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`);
+        const data = await response.json();
+        const meal = data.meals[0];
+        
+        const mealsContainer = document.getElementById('mealsContainer');
+        const mealDetailContainer = document.getElementById('mealDetail');
+        const mealTitle = document.getElementById('mealTitle');
+    
+        // Hide the meals container and meal title (description and categories)
+        mealsContainer.style.display = 'none';
+        mealTitle.style.display = 'none';
+        mealDetailContainer.style.display = 'block';
+    
+        mealDetailContainer.innerHTML = `
+            <div class="meal-detail">
+                <h1>${meal.strMeal}</h1>
+                <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+                <p><strong>Category:</strong> ${meal.strCategory}</p>
+                <p><strong>Area:</strong> ${meal.strArea}</p>
+                <p><strong>Instructions:</strong> ${meal.strInstructions}</p>
+                <p><strong>measure:</strong> ${meal.strmeasure}</p>
+                <button id="backBtn">Back to Meals</button>
+            </div>
+        `;
+    
+        document.getElementById("backBtn").addEventListener("click", () => {
+            mealDetailContainer.style.display = 'none';
+            mealsContainer.style.display = 'grid';
+            mealTitle.style.display = 'block'; // Show the meal title again when going back
+        });
+    }
+    
+    function displayMeals(meals, category) {     
+        const categoriesContainer = document.getElementById('categories');  
+        const mealsContainer = document.getElementById('mealsContainer');  
+        const mealTitle = document.getElementById('mealTitle');
+    
+        categoriesContainer.style.display = 'none';     
+        mealsContainer.style.display = 'grid';      
+    
+        mealsContainer.innerHTML = meals.map(meal => ` 
+            <div class="meal-card" data-meal-id="${meal.idMeal}">     
+                <img src="${meal.strMealThumb}" alt="${meal.strMeal}" class="meal-image">             
+                <h3>${meal.strMeal}</h3>     
+            </div>     
+        `).join('');
+    
+        if (mealsContainer) {
+            const description = categoryDescriptions[category] || "No description available."; 
+            mealTitle.innerHTML = `
+            <h1>${category}</h1> 
+            <p>${description}</p>` 
+            mealTitle.style.display = 'block';
+        }
+    
+        // Add event listener to images
+        document.querySelectorAll('.meal-card img').forEach(image => {
+            image.addEventListener('click', (event) => {
+                const mealCard = event.target.closest(".meal-card");
+                if (mealCard) {
+                    const mealId = mealCard.getAttribute("data-meal-id");
+                    fetchMealDetails(mealId);
+                }
+            });
+        });
     }
 
-    // Add event listener to images
-    document.querySelectorAll('.meal-card img').forEach(image => {
-        image.addEventListener('click', (event) => {
-            const mealCard = event.target.closest(".meal-card");
-            if (mealCard) {
-                const mealId = mealCard.getAttribute("data-meal-id");
-                fetchMealDetails(mealId);
-            }
-        });
-    });
-}
+
