@@ -205,7 +205,7 @@ h3 {
 }
 
 .meal-detail img {
-  width: 100%;
+  width: 50%;
   border-radius: 10px;
 }
 
@@ -221,4 +221,14 @@ button {
 
 button:hover {
   background: #e5533d;
+}
+
+#contMeal{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.meal-detail{
+  width: 100%;
 }

@@ -127,10 +127,14 @@ function displayMeals(meals, category) {
     
         mealDetailContainer.innerHTML = `
             <div class="meal-detail">
-                <h1>${meal.strMeal}</h1>
-                <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+                <div id="contMeal">
+                <img src="${meal.strMealThumb}" alt="${meal.strMeal}" width='300px' height='300px'>
+                            <div>
+                               <h1>${meal.strMeal}</h1>
                 <p><strong>Category:</strong> ${meal.strCategory}</p>
                 <p><strong>Area:</strong> ${meal.strArea}</p>
+                            </div>
+                </div>
                 <p><strong>Instructions:</strong> ${meal.strInstructions}</p>
                 <p><strong>measure:</strong> ${meal.strmeasure}</p>
                 <button id="backBtn">Back to Meals</button>
